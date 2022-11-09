@@ -3,43 +3,42 @@ import { useRouter } from "next/router";
 import { Props } from "../@types/react";
 import { CartType, ICart } from "../@types/cart";
 
-export const AuthContext = createContext<CartType | null>(null);
+export const CartContext = createContext<CartType | null>(null);
 
 export const CartProvider: FC<Props> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const [cart, setCart] = useState<ICart[]>([
-    {
-      itemId: "",
-      title: "",
-      price: 0,
-      quantity: 0,
-      description: "",
-      image: "",
-    },
-  ]);
+  const [cart, setCart] = useState<ICart[]>([]);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const addToCart = async (payload: ICart) => {
-    console.log(payload);
+    if (payload.quantity < 1) return;
+    const itemIndex = cart.findIndex((item) => item.id === payload.id);
+    if (itemIndex !== -1) return;
+    setCart([...cart, payload]);
   };
 
-  const removeFromCart = (id: string) => {
-    console.log(id);
+  const removeFromCart = (id: number) => {
+    const newItems = cart.filter((item) => item.id !== id);
+    setCart(newItems);
   };
   const clearCart = () => {
-    console.log("CLEAR_CART");
+    setCart([]);
   };
 
-  const incrementCart = (id: string) => {
+  const incrementCart = (id: number) => {
     console.log(id);
   };
-  const decrementCart = (id: string) => {
+  const decrementCart = (id: number) => {
     console.log(id);
   };
 
   return (
-    <AuthContext.Provider
+    <CartContext.Provider
       value={{
         cart,
         addToCart,
@@ -51,6 +50,6 @@ export const CartProvider: FC<Props> = ({ children }) => {
       }}
     >
       {children}
-    </AuthContext.Provider>
+    </CartContext.Provider>
   );
 };

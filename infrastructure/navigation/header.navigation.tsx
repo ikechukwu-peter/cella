@@ -5,6 +5,7 @@ import { IoMdBasket } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
 import { CiUser } from "react-icons/ci";
 import { Search } from "../../component/search";
+import { CartDrawer } from "../../component/cart-drawer";
 
 const PAGE_LINKS = [
   { name: "Home", to: "/" },
@@ -16,6 +17,12 @@ const PAGE_LINKS = [
 export const Header = () => {
   const [state, setState] = useState<string>("");
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const {
+    isOpen: isCartOpen,
+    onOpen: onCartOpen,
+    onClose: onCartClose,
+  } = useDisclosure();
 
   return (
     <Box
@@ -122,6 +129,7 @@ export const Header = () => {
               border: "none",
               outline: "none",
             }}
+            onClick={onCartOpen}
           >
             My Cart
           </Button>
@@ -159,6 +167,8 @@ export const Header = () => {
         searchTerm={state}
         setSearchTerm={setState}
       />
+      {/* CART DRAWER */}
+      <CartDrawer isOpen={isCartOpen} onClose={onCartClose} />
     </Box>
   );
 };

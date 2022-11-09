@@ -2,7 +2,7 @@ export const DRINKS = [
   {
     id: 7,
     title: "Smirnoff vodka Blue Label",
-    image: "smirnoffvodkabluelabel.jpg",
+    image: "/smirnoffvodkabluelabel.jpg",
     price: 700,
     type: "vodka",
   },
