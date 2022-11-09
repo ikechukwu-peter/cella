@@ -9,6 +9,7 @@ import {
   useRadioGroup,
   Heading,
 } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
 import NextLink from "next/link";
 import { HomeSlider } from "../component/carousel/slider.carousel";
 import { Selector } from "../component/selector";
@@ -19,49 +20,15 @@ import { IDrink } from "../@types/drink";
 import { Footer } from "../infrastructure/navigation/footer.navigaton";
 import { RadioCard } from "../component/radio-card";
 import { DRINK_TYPES } from "../utilities/drink-types.utilities";
+import { DRINKS } from "../utilities/drinks.utilities";
 
 export default function Home() {
-  const drinks: IDrink[] = [
-    {
-      title: "hennesy",
-      image: "/hennessy.png",
-      price: 600,
-      type: "Scotch",
-    },
-    {
-      title: "Scotch Wiskey",
-      image: "/hennessyblack.webp",
-      price: 300,
-      type: "Scotch",
-    },
-    {
-      title: "Champagne",
-      price: 900,
-      type: "Champagne",
-      image: "/hennessyclassivm.webp",
-    },
-    {
-      title: "Scotch Wiskey",
-      image: "/hennessypurewhite.webp",
-      price: 600,
-      type: "Scotch",
-    },
-    {
-      title: "Jack Daniels",
-      image: "/jackdaniels.jpg",
-      price: 300,
-      type: "Scotch",
-    },
-    {
-      title: "James Hennessy",
-      price: 900,
-      type: "Champagne",
-      image: "/james_hennessy.webp",
-    },
-  ];
+  const [data, setData] = useState<IDrink[]>([]);
 
   const handleChange = (e: any) => {
-    console.log(e);
+    let term = e && e.toLowerCase();
+    const item = DRINKS.filter((drinks) => drinks.type === term);
+    setData(item);
   };
   const options = DRINK_TYPES;
 
@@ -72,6 +39,16 @@ export default function Home() {
   });
 
   const group = getRootProps();
+
+  const handleSearch = (e: any) => {
+    let term = e && e.innerText.toLowerCase();
+    const item = DRINKS.filter((drinks) => drinks.type === term);
+    setData(item);
+  };
+
+  useEffect(() => {
+    setData(DRINKS);
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -85,7 +62,7 @@ export default function Home() {
       </header>
 
       <main className={styles.main}>
-        <Selector />
+        <Selector onChange={handleSearch} />
         <Box
           h={{ base: "10rem", md: "20rem", lg: "25rem" }}
           w="100%"
@@ -122,7 +99,7 @@ export default function Home() {
               Below are our clients top choices and you may choose from any
             </Text>
           </Center>
-          <Drinks drinks={drinks} />
+          <Drinks drinks={data} />
           <Center>
             <NextLink passHref href="/">
               <Button
@@ -181,7 +158,7 @@ export default function Home() {
               );
             })}
           </Flex>
-          <Drinks drinks={drinks} />
+          <Drinks drinks={data} />
           <Center>
             <NextLink passHref href="/">
               <Button

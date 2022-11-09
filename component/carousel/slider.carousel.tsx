@@ -49,8 +49,6 @@ export const HomeSlider: FC<any> = () => {
       setCurrentIndex(newIndex);
     }, delay);
     return () => {
-      console.log(slides[currentIndex]);
-
       resetTimeout();
     };
   }, [currentIndex]);

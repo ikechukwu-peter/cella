@@ -6,3 +6,7 @@ export interface ISearch {
   isOpen: boolean;
   onClose: any;
 }
+
+export interface SearchAction {
+  onChange: any;
+}
