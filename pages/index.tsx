@@ -95,14 +95,27 @@ export default function Home() {
         </Box>
         <Box my="2rem">
           <Center pos="relative">
+            <Image
+              src="/arrowleft.png"
+              alt="arrow left"
+              width={100}
+              height={100}
+            />
             <Heading
               color="brand.400"
               fontSize={"1.8rem"}
               textTransform="uppercase"
               fontWeight={500}
+              mx="1rem"
             >
               Best Sellers
             </Heading>
+            <Image
+              src="/arrowright.png"
+              alt="arrow right"
+              width={100}
+              height={100}
+            />
           </Center>
           <Center>
             <Text color="brand.200" fontWeight={500}>
@@ -128,14 +141,27 @@ export default function Home() {
 
         <Box my="2rem">
           <Center mb="1rem">
+            <Image
+              src="/arrowleft.png"
+              alt="arrow left"
+              width={100}
+              height={100}
+            />
             <Heading
               color="brand.400"
               fontSize={"1.8rem"}
               textTransform="uppercase"
               fontWeight={500}
+              mx="1rem"
             >
               Shop Here
             </Heading>
+            <Image
+              src="/arrowright.png"
+              alt="arrow right"
+              width={100}
+              height={100}
+            />
           </Center>
           <Flex
             {...group}

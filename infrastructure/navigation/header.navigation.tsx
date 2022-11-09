@@ -34,16 +34,17 @@ export const Header = () => {
       <Box
         display={"flex"}
         alignItems="center"
-        gap="2"
         maxW="container.xl"
-        mx="2rem"
-        justifyContent={"space-between"}
+        mx="1.4rem"
+        justifyContent={"space-evenly"}
       >
-        <Box>
-          <Button rounded="xl">Cella</Button>
+        <Box w="100%">
+          <NextLink passHref href="/">
+            <Button rounded="xl">Cella</Button>
+          </NextLink>
         </Box>
 
-        <Flex align={"center"} gap={4}>
+        <Flex align={"center"} gap={4} w="100%">
           {PAGE_LINKS.map(({ to, name }) => (
             <NextLink passHref href={to} key={name}>
               <Box
@@ -71,7 +72,7 @@ export const Header = () => {
             </NextLink>
           ))}
         </Flex>
-        <Flex align={"center"} gap={3}>
+        <Flex align={"center"} w="100%">
           <Button
             leftIcon={<BsSearch />}
             variant="ghost"

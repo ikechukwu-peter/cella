@@ -1,6 +1,5 @@
-import Image from "next/image";
 import { FC } from "react";
-import { Flex, Box, Text, Heading } from "@chakra-ui/react";
+import { Flex, Box, Text, Heading, Image } from "@chakra-ui/react";
 import { DrinkType, IDrink } from "../@types/drink";
 import CurrencyFormatter from "./currency-formatter";
 
@@ -15,14 +14,8 @@ export const Drinks: FC<DrinkType> = ({ drinks }) => {
             justify="center"
             direction="column"
           >
-            <Image
-              layout="responsive"
-              placeholder="empty"
-              src={image}
-              alt="A picture of a drink"
-              width={100}
-              height={100}
-            />
+            <Image src={image} alt="A picture of a drink" w="283px" h="283px" />
+
             <Text color="brand.100" fontSize="0.75rem">
               {type}
             </Text>
