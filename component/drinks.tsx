@@ -19,7 +19,7 @@ export const Drinks: FC<DrinkType> = ({ drinks }) => {
               layout="responsive"
               placeholder="empty"
               src={image}
-              alt="A picture of Peter"
+              alt="A picture of a drink"
               width={100}
               height={100}
             />
