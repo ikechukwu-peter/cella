@@ -23,12 +23,14 @@ export const Drinks: FC<DrinkType> = ({ drinks }) => {
               width={100}
               height={100}
             />
-            <Text color="brand.100">{type}</Text>
-            <Heading color="brand.200" fontSize="1rem">
+            <Text color="brand.100" fontSize="0.75rem">
+              {type}
+            </Text>
+            <Heading color="brand.200" fontSize=".9rem" lineHeight={"24px"}>
               {title}
             </Heading>
-            <Text color="brand.300" fontSize="1.2rem" fontWeight="700">
-              <CurrencyFormatter amount={price} />
+            <Text color="brand.300" fontSize="1rem" fontWeight="500">
+              <CurrencyFormatter amount={price} color="brand.300" />
             </Text>
           </Flex>
         ))}
