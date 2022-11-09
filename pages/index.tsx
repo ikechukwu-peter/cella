@@ -23,8 +23,8 @@ import { DRINK_TYPES } from "../utilities/drink-types.utilities";
 export default function Home() {
   const drinks: IDrink[] = [
     {
-      title: "Scotch Wiskey",
-      image: "/hennessypurewhite.webp",
+      title: "hennesy",
+      image: "/hennessy.png",
       price: 600,
       type: "Scotch",
     },
@@ -47,16 +47,16 @@ export default function Home() {
       type: "Scotch",
     },
     {
-      title: "Scotch Wiskey",
-      image: "/hennessyblack.webp",
+      title: "Jack Daniels",
+      image: "/jackdaniels.jpg",
       price: 300,
       type: "Scotch",
     },
     {
-      title: "Champagne",
+      title: "James Hennessy",
       price: 900,
       type: "Champagne",
-      image: "/hennessyclassivm.webp",
+      image: "/james_hennessy.webp",
     },
   ];
 
