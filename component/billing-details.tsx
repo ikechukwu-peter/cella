@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { PaystackButton } from "react-paystack";
 import {
   Stack,
@@ -13,9 +13,11 @@ import {
 import { IBillingDetails } from "../@types/billing-details";
 import { CartContext } from "../context/cart.context";
 import { CartType } from "../@types/cart";
+import { IPaystack } from "../@types/paystack";
 
 export const BillingDetails = () => {
   const { cartTotal } = useContext(CartContext) as CartType;
+  const [isAllowed, setIsAllowed] = useState<boolean>(false);
 
   const VAT = cartTotal * 0.015;
   const DELIVERY_FEE = cartTotal * 0.5;
@@ -29,6 +31,13 @@ export const BillingDetails = () => {
     email: "johndoe@gmail.com",
   });
 
+  useEffect(() => {
+    let x = sessionStorage.getItem("NIN");
+    if (x) {
+      setIsAllowed(true);
+    }
+  }, []);
+
   const handleState = (e: React.FormEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
     setState({ ...state, [name]: value });
@@ -36,6 +45,8 @@ export const BillingDetails = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    sessionStorage.setItem("NIN", NIN);
+    setIsAllowed(true);
     console.log(NIN);
   };
 
@@ -46,10 +57,23 @@ export const BillingDetails = () => {
 
   const loading = false;
 
-  const onSuccess = (ref: object) => {
-    console.log(ref);
+  const onSuccess = (ref: IPaystack) => {
+    let _items = localStorage.getItem("cart");
+
+    if (_items) {
+      const items = JSON.parse(_items);
+      const payload = {
+        reference: ref.reference,
+        firstName: state.firstName,
+        lastName: state.lastName,
+        email: state.email,
+        state: state.state,
+        password: state.password,
+        items,
+      };
+    }
   };
-  const onClose = (ref: object) => {
+  const onClose = (ref: IPaystack) => {
     alert("Are you sure?");
   };
 
@@ -196,24 +220,26 @@ export const BillingDetails = () => {
               password.
             </FormHelperText>
           </FormControl>
-          <Button
-            as={PaystackButton}
-            {...componentProps}
-            bg="brand.300"
-            my="2rem"
-            color="brand.850"
-            textTransform="uppercase"
-            p="1rem"
-            letterSpacing="0.1rem"
-            fontWeight={600}
-            fontSize=".7rem"
-            _hover={{
-              bg: "brand.450",
-            }}
-            _focus={{
-              outline: "none",
-            }}
-          ></Button>
+          {isAllowed && (
+            <Button
+              as={PaystackButton}
+              {...componentProps}
+              bg="brand.300"
+              my="2rem"
+              color="brand.850"
+              textTransform="uppercase"
+              p="1rem"
+              letterSpacing="0.1rem"
+              fontWeight={600}
+              fontSize=".7rem"
+              _hover={{
+                bg: "brand.450",
+              }}
+              _focus={{
+                outline: "none",
+              }}
+            />
+          )}
         </form>
       </Box>
     </Stack>
