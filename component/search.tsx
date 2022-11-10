@@ -20,11 +20,6 @@ export const Search: FC<ISearch> = ({
 }) => {
   const router = useRouter();
 
-  const onSubmit = () => {
-    onClose();
-    router.push("/product/" + searchTerm);
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onClose();
@@ -54,7 +49,15 @@ export const Search: FC<ISearch> = ({
               <Button variant="ghost" mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button onClick={onSubmit} bg="brand.300">
+              <Button
+                type="submit"
+                bg="brand.300"
+                color="brand.200"
+                _hover={{
+                  bg: "brand.400",
+                  color: "brand.500",
+                }}
+              >
                 Search
               </Button>
             </HStack>

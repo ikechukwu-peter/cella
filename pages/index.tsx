@@ -37,8 +37,8 @@ export default function Home() {
   const options = DRINK_TYPES;
 
   const { getRootProps, getRadioProps } = useRadioGroup({
-    name: "propertyType",
-    defaultValue: "Buy",
+    name: "tags",
+    defaultValue: "Scotch",
     onChange: handleChange,
   });
 
@@ -170,7 +170,7 @@ export default function Home() {
           </Flex>
           <Drinks drinks={data} />
           <Center>
-            <NextLink passHref href="/">
+            <NextLink passHref href="/shop">
               <Button
                 color="brand.600"
                 bg="brand.300"
