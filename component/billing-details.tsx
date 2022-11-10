@@ -22,7 +22,7 @@ import { useData } from "../hooks/user.hooks";
 export const BillingDetails = () => {
   const token = sessionStorage.getItem("token") as string;
   const router = useRouter();
-  const { loading, verifyNIN } = useData();
+  const { loading, verifyNIN, saveData } = useData();
   const { cartTotal } = useContext(CartContext) as CartType;
   const [isAllowed, setIsAllowed] = useState<boolean>(false);
 
@@ -67,7 +67,7 @@ export const BillingDetails = () => {
     console.log(state);
   };
 
-  const onSuccess = (ref: IPaystack) => {
+  const onSuccess = async (ref: IPaystack) => {
     let _items = localStorage.getItem("cart");
 
     if (_items) {
@@ -82,6 +82,7 @@ export const BillingDetails = () => {
         items,
       };
 
+      await saveData(payload);
       router.push("/success");
     }
   };

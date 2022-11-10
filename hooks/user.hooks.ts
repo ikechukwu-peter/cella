@@ -7,10 +7,10 @@ export const useData = () => {
 
   const router = useRouter();
 
-  const verifyNIN = async (nin: number) => {
+  const saveData = async (payload: any) => {
     setLoading(true);
     try {
-      const { data } = await instance.post("/auth/verify", nin);
+      const { data } = await instance.post("/verify", payload);
       return data;
     } catch (error) {
       console.log(error);
@@ -19,10 +19,23 @@ export const useData = () => {
     }
   };
 
-  const signIn = async (payload: object) => {
+  const verifyNIN = async (nin: number) => {
     setLoading(true);
     try {
-      const resp = await instance.post("/auth.login", payload);
+      const { data } = await instance.post("/verify", { nin });
+      return data;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signIn = async (payload: { email: string; password: string }) => {
+    setLoading(true);
+    try {
+      console.log(payload, "PAYLOAD");
+      const resp = await instance.post("/login", payload);
       return resp;
     } catch (error) {
       console.log(error);
@@ -35,5 +48,6 @@ export const useData = () => {
     loading,
     signIn,
     verifyNIN,
+    saveData,
   };
 };

@@ -38,6 +38,8 @@ const Login = () => {
     e.preventDefault();
 
     const result = await signIn(state);
+
+    console.log(result);
   };
   return (
     <div className={styles.container}>
@@ -105,7 +107,7 @@ const Login = () => {
                       type="email"
                       name="email"
                       autoComplete="false"
-                      value={state.password}
+                      value={state.email}
                       onChange={handleState}
                     />
                   </FormControl>
