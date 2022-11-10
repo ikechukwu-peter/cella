@@ -56,20 +56,24 @@ export const BillingDetails = () => {
     if (NIN) {
       sessionStorage.setItem("NIN", NIN);
       const result = await verifyNIN(Number(NIN));
-      const date = dayjs(new Date());
-      const diff = date.diff(result?.birthdate, "year");
-      if (diff < 18) {
-        return router.push("/success");
-      }
-      const newUser = {
-        firstName: result?.firstname,
-        lastName: result?.lastname,
-        state: result?.residence_state,
-        email: result?.email,
-      };
 
-      sessionStorage.setItem("user", JSON.stringify(newUser));
-      setState(newUser);
+      if (result) {
+        const date = dayjs(new Date());
+        const diff = date.diff(result?.birthdate, "year");
+
+        if (diff < 18) {
+          return router.push("/warning");
+        }
+        const newUser = {
+          firstName: result?.firstname,
+          lastName: result?.lastname,
+          state: result?.residence_state,
+          email: result?.email,
+        };
+
+        sessionStorage.setItem("user", JSON.stringify(newUser));
+        setState(newUser);
+      }
     } else {
       cogoToast.warn("Empty fields");
     }

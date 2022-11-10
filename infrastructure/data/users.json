@@ -1,0 +1,16 @@
+[
+  {
+    "firstName": "John",
+    "LastName": "Doe",
+    "email": "johndoe@gmail.com",
+    "state": "Lagos",
+    "birthdate": "04-03-1999"
+  },
+  {
+    "firstName": "Harry",
+    "LastName": "Jefferson",
+    "email": "harryjefferson@gmail.com",
+    "state": "Rivers",
+    "birthdate": "08-03-2010"
+  }
+]
