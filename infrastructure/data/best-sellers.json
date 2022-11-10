@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "Hennessy Pure White",
+    "price": 22000,
+    "image": "https://www.hennessy.com/sites/hennessy/files/styles/square_375x375/public/2021-01/hennessy-pure-white.png?itok=aQHz9-47",
+    "type": "cognac"
+  },
+  {
+    "id": 2,
+    "title": "Hennessy V.S.O.P Privilege",
+    "price": 245000,
+    "image": "https://www.hennessy.com/sites/hennessy/files/styles/square_375x375/public/2020-01/VSOP.png?itok=fdLeTbNQ",
+    "type": "cognac"
+  },
+  {
+    "id": 3,
+    "title": "Smirnoff Vodka Blue Label",
+    "price": 16000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/Vodka/14250-450x450.jpg",
+    "type": "vodka"
+  },
+  {
+    "id": 4,
+    "title": "Clase Azul Tequila 750ml",
+    "price": 116000,
+    "image": "https://i0.wp.com/asapliquor247.com/wp-content/uploads/2021/05/clase-azul-tequila-reposado-1.jpeg?fit=500%2C500&ssl=1",
+    "type": "tequila"
+  },
+  {
+    "id": 5,
+    "title": "Jack Daniels Tenn. Whiskey",
+    "price": 198000,
+    "image": "https://cdn.shopify.com/s/files/1/0399/6136/2595/products/JD_big_500x.jpg?v=1591104258",
+    "type": "Whisky"
+  }
+]

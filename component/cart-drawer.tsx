@@ -18,28 +18,18 @@ import {
   Divider,
   SimpleGrid,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { CartContext } from "../context/cart.context";
 import { CartType, ICartDrawer } from "../@types/cart";
 import CurrencyFormatter from "./currency-formatter";
 
 export const CartDrawer: FC<ICartDrawer> = ({ isOpen, onClose }) => {
-  const { cart } = useContext(CartContext) as CartType;
+  const { cart, cartTotal, removeFromCart } = useContext(
+    CartContext
+  ) as CartType;
 
-  const cartTotal = 2;
-
-  const handleRemoveFromCart = (id: string) => {
-    console.log(id);
-  };
-
-  const handleCart = (item: any) => {
-    const payload = {
-      id: item.id,
-      title: item.title,
-      image: item.image,
-      price: item.price,
-    };
-
-    console.log(payload);
+  const handleRemoveFromCart = (id: number) => {
+    removeFromCart(id);
   };
 
   return (
@@ -104,7 +94,7 @@ export const CartDrawer: FC<ICartDrawer> = ({ isOpen, onClose }) => {
                               fontSize={["1rem"]}
                               size="sm"
                               w="1%"
-                              onClick={() => handleRemoveFromCart(item)}
+                              onClick={() => handleRemoveFromCart(item.id)}
                               borderTopRadius="50%"
                               borderBottomRadius="50%"
                               _hover={{
@@ -177,56 +167,60 @@ export const CartDrawer: FC<ICartDrawer> = ({ isOpen, onClose }) => {
           {cart && cart.length > 0 ? (
             <>
               <DrawerFooter borderTopWidth="1px">
-                <Button
-                  size="md"
-                  fontSize={{ base: ".8rem", md: "1rem" }}
-                  bg="brand.300"
-                  color="brand.750"
-                  onClick={onClose}
-                  _hover={{
-                    color: "brand.200",
-                    borderColor: "brand.700",
-                    cursor: "pointer",
-                  }}
-                  _focus={{
-                    bg: "null",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                  }}
-                  _active={{
-                    bg: "null",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                  }}
-                  mr={3}
-                >
-                  View Cart
-                </Button>
-                <Button
-                  size="md"
-                  fontSize={{ base: ".8rem", md: "1rem" }}
-                  bg="brand.300"
-                  color="brand.750"
-                  onClick={onClose}
-                  _hover={{
-                    color: "brand.200",
-                    borderColor: "brand.700",
-                    cursor: "pointer",
-                  }}
-                  _focus={{
-                    bg: "null",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                  }}
-                  _active={{
-                    bg: "null",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                  }}
-                  mr={3}
-                >
-                  Check Out
-                </Button>
+                <NextLink passHref href="/cart">
+                  <Button
+                    size="md"
+                    fontSize={{ base: ".8rem", md: "1rem" }}
+                    bg="brand.300"
+                    color="brand.750"
+                    onClick={onClose}
+                    _hover={{
+                      color: "brand.200",
+                      borderColor: "brand.700",
+                      cursor: "pointer",
+                    }}
+                    _focus={{
+                      bg: "null",
+                      cursor: "pointer",
+                      textDecoration: "none",
+                    }}
+                    _active={{
+                      bg: "null",
+                      cursor: "pointer",
+                      textDecoration: "none",
+                    }}
+                    mr={3}
+                  >
+                    View Cart
+                  </Button>
+                </NextLink>
+                <NextLink passHref href="/checkout">
+                  <Button
+                    size="md"
+                    fontSize={{ base: ".8rem", md: "1rem" }}
+                    bg="brand.300"
+                    color="brand.750"
+                    onClick={onClose}
+                    _hover={{
+                      color: "brand.200",
+                      borderColor: "brand.700",
+                      cursor: "pointer",
+                    }}
+                    _focus={{
+                      bg: "null",
+                      cursor: "pointer",
+                      textDecoration: "none",
+                    }}
+                    _active={{
+                      bg: "null",
+                      cursor: "pointer",
+                      textDecoration: "none",
+                    }}
+                    mr={3}
+                  >
+                    Check Out
+                  </Button>
+                </NextLink>
               </DrawerFooter>
             </>
           ) : (

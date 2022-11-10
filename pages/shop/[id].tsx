@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { IDrink } from "../../@types/drink";
-import { DRINKS } from "../../utilities/drinks.utilities";
+import DRINKS from "../../infrastructure/data/wines.json";
 import styles from "../../styles/Home.module.css";
 import Head from "next/head";
 import { Header } from "../../infrastructure/navigation/header.navigation";
@@ -69,6 +69,7 @@ const Product = () => {
       image: product.image,
       price: product.price,
       quantity: state,
+      type: product.type,
     };
 
     addToCart({ ...payload });
@@ -166,7 +167,7 @@ const Product = () => {
             >
               Add to Cart
             </Button>
-            <Button
+            {/* <Button
               textTransform="uppercase"
               bg="brand.500"
               color="brand.400"
@@ -177,7 +178,7 @@ const Product = () => {
               }}
             >
               Add to Favourites
-            </Button>
+            </Button> */}
           </Flex>
         </Flex>
 

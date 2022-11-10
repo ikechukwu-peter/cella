@@ -1,3 +1,4 @@
+import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import Image from "next/image";
 import {
@@ -14,13 +15,13 @@ import NextLink from "next/link";
 import { HomeSlider } from "../component/carousel/slider.carousel";
 import { Selector } from "../component/selector";
 import { Header } from "../infrastructure/navigation/header.navigation";
-import styles from "../styles/Home.module.css";
 import { Drinks } from "../component/drinks";
 import { IDrink } from "../@types/drink";
 import { Footer } from "../infrastructure/navigation/footer.navigaton";
 import { RadioCard } from "../component/radio-card";
 import { DRINK_TYPES } from "../utilities/drink-types.utilities";
-import { DRINKS } from "../utilities/drinks.utilities";
+import DRINKS from "../infrastructure/data/wines.json";
+import BestSellers from "../infrastructure/data/best-sellers.json";
 
 export default function Home() {
   const [data, setData] = useState<IDrink[]>([]);
@@ -99,7 +100,7 @@ export default function Home() {
               Below are our clients top choices and you may choose from any
             </Text>
           </Center>
-          <Drinks drinks={data} />
+          <Drinks drinks={BestSellers} />
           <Center>
             <NextLink passHref href="/">
               <Button

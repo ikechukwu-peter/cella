@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -11,7 +11,6 @@ import { PageLoader } from "../infrastructure/loader/page.loader";
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-
   const [pageLoad, setPageLoad] = useState(true);
 
   useEffect(() => {

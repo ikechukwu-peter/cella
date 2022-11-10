@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "title": "Hennessy V.S Demi 35cl",
+    "price": 76000,
+    "image": "https://www.hennessy.com/sites/hennessy/files/styles/square_375x375/public/2020-01/VS_0.png?itok=_zAiADPB",
+    "type": "cognac"
+  },
+  {
+    "id": 2,
+    "title": "Hennessy Classvim",
+    "price": 116000,
+    "image": "https://www.hennessy.com/sites/hennessy/files/styles/square_375x375/public/2020-03/VS_CLASIUM.png?itok=HSyMTeLb",
+    "type": "cognac"
+  },
+  {
+    "id": 3,
+    "title": "Hennessy Pure White",
+    "price": 22000,
+    "image": "https://www.hennessy.com/sites/hennessy/files/styles/square_375x375/public/2021-01/hennessy-pure-white.png?itok=aQHz9-47",
+    "type": "cognac"
+  },
+  {
+    "id": 4,
+    "title": "Hennessy V.S.O.P Privilege",
+    "price": 245000,
+    "image": "https://www.hennessy.com/sites/hennessy/files/styles/square_375x375/public/2020-01/VSOP.png?itok=fdLeTbNQ",
+    "type": "cognac"
+  },
+  {
+    "id": 5,
+    "title": "James Hennessy",
+    "price": 198000,
+    "image": "https://www.hennessy.com/sites/hennessy/files/styles/square_375x375/public/2020-01/JAMES_HENNESSY.png?itok=30LsGNYL",
+    "type": "cognac"
+  },
+  {
+    "id": 6,
+    "title": "Smirnoff Vodka Blue Label",
+    "price": 16000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/Vodka/14250-450x450.jpg",
+    "type": "vodka"
+  },
+  {
+    "id": 7,
+    "title": "Clase Azul Tequila 750ml",
+    "price": 116000,
+    "image": "https://i0.wp.com/asapliquor247.com/wp-content/uploads/2021/05/clase-azul-tequila-reposado-1.jpeg?fit=500%2C500&ssl=1",
+    "type": "tequila"
+  },
+  {
+    "id": 8,
+    "title": "Jack Daniels Tenn. Whiskey",
+    "price": 198000,
+    "image": "https://cdn.shopify.com/s/files/1/0399/6136/2595/products/JD_big_500x.jpg?v=1591104258",
+    "type": "whisky"
+  },
+  {
+    "id": 9,
+    "title": "Smirnoff Red Label 1L",
+    "price": 20000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/Vodka/a897833cda4f66049536b8ca86af4458-450x450.jpg",
+    "type": "vodka"
+  },
+  {
+    "id": 10,
+    "title": "Skyy Vodka 1L",
+    "price": 13000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/Vodka/skyy-450x450.jpg",
+    "type": "vodka"
+  },
+  {
+    "id": 11,
+    "title": "Poliakov Original Vodka",
+    "price": 6000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/Vodka/POLIAKOV/poliakov-vodka-450x450.jpg",
+    "type": "vodka"
+  },
+  {
+    "id": 12,
+    "title": "Ciroc Vodka 1L",
+    "price": 40000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/Vodka/ciroc-blue-stone-450x450.png",
+    "type": "vodka"
+  },
+  {
+    "id": 13,
+    "title": "Claymore Blended Whisky",
+    "price": 12000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/American%20Whiskey/claymore-450x450.jpg",
+    "type": "whisky"
+  },
+  {
+    "id": 14,
+    "title": "Dalmore Scotch Whisky",
+    "price": 65000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/American%20Whiskey/claymore-450x450.jpg",
+    "type": "whisky"
+  },
+  {
+    "id": 15,
+    "title": "Glenfiddich 18 year old",
+    "price": 55000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/Whiskey/GLENFIDDICH/glenfiddich%2018yrs-450x450.jpg",
+    "type": "whisky"
+  },
+  {
+    "id": 16,
+    "title": "Grouse Smoky Black 70cl",
+    "price": 20000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/Whiskey/THE%20FAMOUS%20GROUSE/2018-smoky-black-bottle-shot-700ml-transparent-bg-png-450x450.png",
+    "type": "whisky"
+  },
+  {
+    "id": 17,
+    "title": "Camino Blanco 75cl",
+    "price": 24000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/Tequila/camino-silver-450x450.jpg",
+    "type": "tequila"
+  },
+  {
+    "id": 18,
+    "title": "Espolon Tequila Reposado",
+    "price": 40000,
+    "image": "https://www.cellarcentral.ng/image/cache/catalog/Tequila/espolon%20tequila%20reposado%20gold-450x450.png",
+    "type": "tequila"
+  },
+  {
+    "id": 19,
+    "title": "Volcan Blanco",
+    "price": 25000,
+    "image": "https://myliquorhub.com/wp-content/uploads/2022/10/Volcan-blanco-tequila.jpg",
+    "type": "tequila"
+  },
+  {
+    "id": 20,
+    "title": "Volcan Cristallino",
+    "price": 45000,
+    "image": "https://myliquorhub.com/wp-content/uploads/2020/10/Volcan-De-Mi-Tierra-Cristalino-Anejo-Tequila-myliquorhub.com_-370x370.jpg",
+    "type": "tequila"
+  }
+]
