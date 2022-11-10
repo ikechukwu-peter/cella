@@ -24,7 +24,6 @@ export const BillingDetails = () => {
   const router = useRouter();
   const { loading, verifyNIN, saveData } = useData();
   const { cartTotal } = useContext(CartContext) as CartType;
-  const [isAllowed, setIsAllowed] = useState<boolean>(false);
 
   const VAT = cartTotal * 0.015;
   const DELIVERY_FEE = cartTotal * 0.5;
@@ -39,9 +38,10 @@ export const BillingDetails = () => {
   });
 
   useEffect(() => {
-    let x = sessionStorage.getItem("NIN");
-    if (x) {
-      setIsAllowed(true);
+    let resp = sessionStorage.getItem("user");
+    if (resp) {
+      const _result = JSON.parse(resp);
+      setState(_result);
     }
   }, []);
 
@@ -54,7 +54,6 @@ export const BillingDetails = () => {
     e.preventDefault();
     if (NIN) {
       sessionStorage.setItem("NIN", NIN);
-      setIsAllowed(true);
       const result = await verifyNIN(Number(NIN));
       console.log("RESULT", result);
     } else {
@@ -250,7 +249,7 @@ export const BillingDetails = () => {
               password.
             </FormHelperText>
           </FormControl>
-          {isAllowed && !!token && (
+          {!!token && (
             <Button
               as={PaystackButton}
               {...componentProps}
