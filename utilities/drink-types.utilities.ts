@@ -3,10 +3,10 @@ export const DRINK_TYPES = [
   "Cognac",
   "Wine",
   "Bourbon",
-  "Champagne",
   "Tequila",
   "Vodka",
   "Spirit",
   "Beer",
   "Rum",
+  "Champagne",
 ];

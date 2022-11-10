@@ -6,7 +6,7 @@ import CurrencyFormatter from "./currency-formatter";
 
 export const Drinks: FC<DrinkType> = ({ drinks }) => {
   return (
-    <Flex p="2rem" align="center" gap="2rem" wrap="wrap">
+    <Flex p="2rem" align="center" gap="2rem" wrap="wrap" justify="center">
       {!!drinks?.length ? (
         drinks.map(({ id, title, type, image, price }, index: number) => (
           <NextLink passHref href={"/shop/" + id} key={index + title}>

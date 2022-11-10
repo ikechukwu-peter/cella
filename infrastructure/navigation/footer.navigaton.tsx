@@ -14,7 +14,13 @@ import { Props } from "../../@types/react";
 export const Footer = () => {
   return (
     <Box minW="100%" bg="brand.400" role="contentinfo" px="1rem" w="100%">
-      <Flex justify="space-between" align="center" py="1.3rem">
+      <Flex
+        justify="space-between"
+        align={{ base: "flex-start", md: "center" }}
+        py="1.3rem"
+        direction={{ base: "column", md: "row" }}
+        gap="1rem"
+      >
         <Box>
           <Button size="md" rounded="xl">
             Cella

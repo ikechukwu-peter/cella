@@ -9,7 +9,7 @@ export const RadioCard: FC<any> = (props) => {
   const checkbox = getCheckboxProps();
 
   return (
-    <Box as="label">
+    <Box as="label" pos={"relative"}>
       <input {...input} />
       <Box
         {...checkbox}

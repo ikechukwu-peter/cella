@@ -7,6 +7,7 @@ import { theme } from "../infrastructure/theme/theme";
 import { AuthProvider } from "../context/auth.context";
 import { CartProvider } from "../context/cart.context";
 import { PageLoader } from "../infrastructure/loader/page.loader";
+import { ScrollToTop } from "../component/scroll-to-top";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -41,7 +42,16 @@ export default function App({ Component, pageProps }: AppProps) {
           {pageLoad ? (
             <PageLoader />
           ) : (
-            <>{loading ? <PageLoader /> : <Component {...pageProps} />}</>
+            <>
+              {loading ? (
+                <PageLoader />
+              ) : (
+                <>
+                  <Component {...pageProps} />
+                  <ScrollToTop />
+                </>
+              )}
+            </>
           )}
         </ChakraProvider>
       </CartProvider>

@@ -86,12 +86,14 @@ export const HomeSlider: FC<any> = () => {
         align={"center"}
         justify="space-around"
         px="2rem"
-        w="100%"
+        w={{ base: "90%", md: "100%" }}
         h="100%"
         pb="2rem"
+        m="auto"
         transition="ease"
         whiteSpace="nowrap"
         transitionDuration={"1000ms"}
+        direction={{ base: "column", md: "row" }}
       >
         <Flex
           align={"center"}

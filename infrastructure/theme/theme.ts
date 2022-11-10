@@ -7,6 +7,7 @@ const config = {
 
 const colors = {
   brand: {
+    colorScheme: "#ee2761",
     600: "#121212",
     500: "rgba(255, 255, 255, 0.7)",
     400: "#935E08",

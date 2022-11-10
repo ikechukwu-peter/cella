@@ -9,6 +9,7 @@ import {
   Flex,
   useRadioGroup,
   Heading,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import NextLink from "next/link";
@@ -24,6 +25,8 @@ import DRINKS from "../infrastructure/data/wines.json";
 import BestSellers from "../infrastructure/data/best-sellers.json";
 
 export default function Home() {
+  const [isMobile] = useMediaQuery("(max-width: 600px)");
+
   const [data, setData] = useState<IDrink[]>([]);
 
   const handleChange = (e: any) => {
@@ -65,9 +68,11 @@ export default function Home() {
       <main className={styles.main}>
         <Selector onChange={handleSearch} />
         <Box
-          h={{ base: "10rem", md: "20rem", lg: "25rem" }}
-          w="100%"
+          h={{ base: "20rem", md: "20rem", lg: "25rem" }}
+          w={{ base: "100%", md: "100%" }}
           overflow={"hidden"}
+          m="auto"
+          mb="2rem"
         >
           <HomeSlider />
         </Box>
@@ -76,12 +81,12 @@ export default function Home() {
             <Image
               src="/arrowleft.png"
               alt="arrow left"
-              width={100}
-              height={100}
+              width={isMobile ? 50 : 100}
+              height={isMobile ? 50 : 100}
             />
             <Heading
               color="brand.400"
-              fontSize={"1.8rem"}
+              fontSize={{ base: "1rem", md: "1.8rem" }}
               textTransform="uppercase"
               fontWeight={500}
               mx="1rem"
@@ -91,12 +96,16 @@ export default function Home() {
             <Image
               src="/arrowright.png"
               alt="arrow right"
-              width={100}
-              height={100}
+              width={isMobile ? 50 : 100}
+              height={isMobile ? 50 : 100}
             />
           </Center>
           <Center>
-            <Text color="brand.200" fontWeight={500}>
+            <Text
+              color="brand.200"
+              fontWeight={500}
+              px={{ base: "2rem", md: "1rem" }}
+            >
               Below are our clients top choices and you may choose from any
             </Text>
           </Center>
@@ -122,12 +131,12 @@ export default function Home() {
             <Image
               src="/arrowleft.png"
               alt="arrow left"
-              width={100}
-              height={100}
+              width={isMobile ? 50 : 100}
+              height={isMobile ? 50 : 100}
             />
             <Heading
               color="brand.400"
-              fontSize={"1.8rem"}
+              fontSize={{ base: "1rem", md: "1.8rem" }}
               textTransform="uppercase"
               fontWeight={500}
               mx="1rem"
@@ -137,18 +146,18 @@ export default function Home() {
             <Image
               src="/arrowright.png"
               alt="arrow right"
-              width={100}
-              height={100}
+              width={isMobile ? 50 : 100}
+              height={isMobile ? 50 : 100}
             />
           </Center>
           <Flex
             {...group}
             py={{ base: ".2rem", md: ".3rem", lg: ".4rem" }}
+            px="1rem"
             gap={{ base: 1, md: 1, lg: 1 }}
             w="100%"
-            flexWrap={"wrap"}
             alignItems={{ base: "center" }}
-            justify={{ base: "center", md: "center", lg: "center" }}
+            overflow="auto"
           >
             {options.map((value) => {
               const radio = getRadioProps({ value });

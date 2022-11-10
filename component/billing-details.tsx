@@ -9,13 +9,19 @@ import {
   FormLabel,
   Input,
   FormHelperText,
+  Spinner,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import cogoToast from "cogo-toast";
 import { IBillingDetails } from "../@types/billing-details";
 import { CartContext } from "../context/cart.context";
 import { CartType } from "../@types/cart";
 import { IPaystack } from "../@types/paystack";
+import { useData } from "../hooks/user.hooks";
 
 export const BillingDetails = () => {
+  const router = useRouter();
+  const { loading, verifyNIN } = useData();
   const { cartTotal } = useContext(CartContext) as CartType;
   const [isAllowed, setIsAllowed] = useState<boolean>(false);
 
@@ -43,19 +49,22 @@ export const BillingDetails = () => {
     setState({ ...state, [name]: value });
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sessionStorage.setItem("NIN", NIN);
-    setIsAllowed(true);
-    console.log(NIN);
+    if (NIN) {
+      sessionStorage.setItem("NIN", NIN);
+      setIsAllowed(true);
+      const result = await verifyNIN(Number(NIN));
+      console.log("RESULT", result);
+    } else {
+      cogoToast.warn("Empty fields");
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(state);
   };
-
-  const loading = false;
 
   const onSuccess = (ref: IPaystack) => {
     let _items = localStorage.getItem("cart");
@@ -71,6 +80,8 @@ export const BillingDetails = () => {
         password: state.password,
         items,
       };
+
+      router.push("/success");
     }
   };
   const onClose = (ref: IPaystack) => {
@@ -135,8 +146,19 @@ export const BillingDetails = () => {
             bg: "brand.400",
             color: " brand.500",
           }}
+          disabled={loading || !NIN}
         >
-          Verify ID
+          {loading ? (
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="brand.300"
+              size="md"
+            />
+          ) : (
+            "Verify"
+          )}
         </Button>
       </form>
 
