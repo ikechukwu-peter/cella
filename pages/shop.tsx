@@ -36,7 +36,7 @@ const Shop = () => {
         <Header />
       </header>
       <main className={styles.main}>
-        <Center my="2rem">
+        <Center m="2rem">
           <form onSubmit={handleSubmit}>
             <Flex align="center" gap="2rem">
               <FormControl>
