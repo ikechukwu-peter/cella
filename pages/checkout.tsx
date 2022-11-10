@@ -1,8 +1,6 @@
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
-import NextLink from "next/link";
 import { useContext } from "react";
-import { BiLeftArrowAlt } from "react-icons/bi";
 
 import { Heading, Text, Box, Flex, Center, HStack } from "@chakra-ui/react";
 import { Header } from "../infrastructure/navigation/header.navigation";

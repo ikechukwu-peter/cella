@@ -24,7 +24,8 @@ const PAGE_LINKS = [
   { name: "About", to: "/about" },
 ];
 
-const token = null;
+//temporary
+const token = false;
 
 export const Header = () => {
   const { cart } = useContext(CartContext) as CartType;
@@ -218,32 +219,34 @@ export const Header = () => {
             </Button>
 
             {token ? (
-              <Button
-                leftIcon={<CiUser />}
-                variant="ghost"
-                color="brand.500"
-                _hover={{
-                  bg: "null",
-                  color: "brand.500",
-                  cursor: "pointer",
-                  border: "none",
-                  outline: "none",
-                }}
-                _focus={{
-                  bg: "null",
-                  cursor: "pointer",
-                  border: "none",
-                  outline: "none",
-                }}
-                _active={{
-                  bg: "null",
-                  cursor: "pointer",
-                  border: "none",
-                  outline: "none",
-                }}
-              >
-                My Account
-              </Button>
+              <NextLink passHref href="/account">
+                <Button
+                  leftIcon={<CiUser />}
+                  variant="ghost"
+                  color="brand.500"
+                  _hover={{
+                    bg: "null",
+                    color: "brand.500",
+                    cursor: "pointer",
+                    border: "none",
+                    outline: "none",
+                  }}
+                  _focus={{
+                    bg: "null",
+                    cursor: "pointer",
+                    border: "none",
+                    outline: "none",
+                  }}
+                  _active={{
+                    bg: "null",
+                    cursor: "pointer",
+                    border: "none",
+                    outline: "none",
+                  }}
+                >
+                  My Account
+                </Button>
+              </NextLink>
             ) : (
               <NextLink passHref href="/login">
                 <Button

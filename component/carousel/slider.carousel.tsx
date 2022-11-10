@@ -54,7 +54,7 @@ export const HomeSlider: FC<any> = () => {
   }, [currentIndex]);
 
   return (
-    <Box h="100%" w="100%" pos="relative" bg="brand.600">
+    <Box h="100%" w="100%" pos="relative" bg="brand.600" p="4rem">
       <IconButton
         color="brand.300"
         aria-label="left-arrow"
@@ -86,7 +86,7 @@ export const HomeSlider: FC<any> = () => {
         align={"center"}
         justify="space-around"
         px="2rem"
-        w={{ base: "90%", md: "100%" }}
+        w={{ base: "80%", md: "100%" }}
         h="100%"
         pb="2rem"
         m="auto"
@@ -99,26 +99,40 @@ export const HomeSlider: FC<any> = () => {
           align={"center"}
           justify="center"
           direction={"column"}
-          gap="1.4rem"
+          gap={{ base: ".76rem", md: "1.4rem" }}
         >
-          <Text color="brand.500" textTransform="uppercase">
+          <Text
+            color="brand.500"
+            textTransform="uppercase"
+            fontSize={{ base: ".76rem", md: ".8rem", lg: "1rem" }}
+          >
             Proud Partners
           </Text>
-          <Heading color="brand.500" textTransform="uppercase">
+          <Heading
+            color="brand.500"
+            textTransform="uppercase"
+            fontSize={{ base: ".76rem", md: ".8rem", lg: "1.4rem" }}
+          >
             Hennessy
           </Heading>
-          <Text color="brand.500">
+          <Text
+            color="brand.500"
+            fontSize={{ base: ".76rem", md: ".8rem", lg: "1rem" }}
+          >
             {"You haven't had Cognac, if you are yet to"}
             <br />
             taste Hennessy in all its glory .Try it today
           </Text>
           <Button
+            mb=".76rem"
+            size={{ base: "sm", md: "md" }}
             color="brand.200"
             bg="brand.300"
             _hover={{
               bg: "brand.400",
               color: "brand.500",
             }}
+            fontSize={{ base: ".76rem", md: ".8rem", lg: "1rem" }}
           >
             Order Now
           </Button>
@@ -126,8 +140,8 @@ export const HomeSlider: FC<any> = () => {
         <Box maxW="300px" maxH="300px" pos="relative">
           <Image
             src={slides[currentIndex]}
-            alt="g"
-            h="auto"
+            alt="A picture of a drink"
+            h="100%"
             w="100%"
             objectFit={"cover"}
             objectPosition="center"

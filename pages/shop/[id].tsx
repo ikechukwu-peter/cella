@@ -95,7 +95,7 @@ const Product = () => {
       <main className={styles.main}>
         <Selector onChange={handleSearch} />
         <Flex
-          align="flex-start"
+          align="center"
           justify="center"
           direction={{ base: "column", md: "row" }}
           mt="4rem"
@@ -171,6 +171,7 @@ const Product = () => {
                 color: "brand.500",
               }}
               onClick={handleCart}
+              p="1rem"
             >
               Add to Cart
             </Button>

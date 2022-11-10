@@ -1,17 +1,17 @@
 import NextLink from "next/link";
 import Head from "next/head";
 import type { NextPage } from "next";
+import styles from "../styles/Home.module.css";
 import { Box, Heading, Text, Button, Link } from "@chakra-ui/react";
 import { Header } from "../infrastructure/navigation/header.navigation";
 import { Footer } from "../infrastructure/navigation/footer.navigaton";
-import styles from "../styles/Home.module.css";
 
-const NotFound: NextPage = () => {
+const About: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Cella || Cella Page Not Found</title>
-        <meta name="description" content="Cella || Cella Page Not Found" />
+        <title>Cella || About</title>
+        <meta name="description" content="Cella || About" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header>
@@ -29,20 +29,8 @@ const NotFound: NextPage = () => {
           minW={"100vw"}
           minH={"100vh"}
         >
-          <Heading
-            display="inline-block"
-            as="h2"
-            size="2xl"
-            bgGradient="linear(to-r, brand.800, brand.300)"
-            backgroundClip="text"
-          >
-            404
-          </Heading>
-          <Text fontSize="18px" mt={3} mb={2}>
-            Page Not Found
-          </Text>
           <Text color={"gray.500"} mb={6}>
-            {"The page you're looking for does not seem to exist"}
+            Coming Soon!
           </Text>
           <NextLink passHref href="/">
             <Button
@@ -67,4 +55,4 @@ const NotFound: NextPage = () => {
   );
 };
 
-export default NotFound;
+export default About;

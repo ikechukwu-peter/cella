@@ -72,7 +72,6 @@ export default function Home() {
           w={{ base: "100%", md: "100%" }}
           overflow={"hidden"}
           m="auto"
-          mb="2rem"
         >
           <HomeSlider />
         </Box>

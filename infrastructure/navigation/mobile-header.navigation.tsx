@@ -9,7 +9,6 @@ import {
   DrawerCloseButton,
   DrawerFooter,
   Flex,
-  Image,
   Box,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -32,7 +31,7 @@ export const MobileNav: FC<IHead> = ({ isOpen, onClose, pages }) => {
     onSearchOpen();
   };
 
-  const token = null;
+  const token = false;
   return (
     <>
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
@@ -122,32 +121,34 @@ export const MobileNav: FC<IHead> = ({ isOpen, onClose, pages }) => {
                   </Button>
 
                   {token ? (
-                    <Button
-                      leftIcon={<CiUser />}
-                      variant="ghost"
-                      color="brand.500"
-                      _hover={{
-                        bg: "null",
-                        color: "brand.500",
-                        cursor: "pointer",
-                        border: "none",
-                        outline: "none",
-                      }}
-                      _focus={{
-                        bg: "null",
-                        cursor: "pointer",
-                        border: "none",
-                        outline: "none",
-                      }}
-                      _active={{
-                        bg: "null",
-                        cursor: "pointer",
-                        border: "none",
-                        outline: "none",
-                      }}
-                    >
-                      My Account
-                    </Button>
+                    <NextLink passHref href="/account">
+                      <Button
+                        leftIcon={<CiUser />}
+                        variant="ghost"
+                        color="brand.500"
+                        _hover={{
+                          bg: "null",
+                          color: "brand.500",
+                          cursor: "pointer",
+                          border: "none",
+                          outline: "none",
+                        }}
+                        _focus={{
+                          bg: "null",
+                          cursor: "pointer",
+                          border: "none",
+                          outline: "none",
+                        }}
+                        _active={{
+                          bg: "null",
+                          cursor: "pointer",
+                          border: "none",
+                          outline: "none",
+                        }}
+                      >
+                        My Account
+                      </Button>
+                    </NextLink>
                   ) : (
                     <NextLink passHref href="/login">
                       <Button
