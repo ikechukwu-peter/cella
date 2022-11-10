@@ -3,7 +3,6 @@ import { Stack, Text, Button, Image, Center } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { CartType } from "../@types/cart";
 import { CartContext } from "../context/cart.context";
-import { useRouter } from "next/router";
 
 export const WarningCard = () => {
   const { cartTotal } = useContext(CartContext) as CartType;

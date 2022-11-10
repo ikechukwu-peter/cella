@@ -11,6 +11,7 @@ import {
   FormHelperText,
   Spinner,
 } from "@chakra-ui/react";
+import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import cogoToast from "cogo-toast";
 import { IBillingDetails } from "../@types/billing-details";
@@ -18,10 +19,9 @@ import { CartContext } from "../context/cart.context";
 import { CartType } from "../@types/cart";
 import { IPaystack } from "../@types/paystack";
 import { useData } from "../hooks/user.hooks";
-import dayjs from "dayjs";
 
 export const BillingDetails = () => {
-  const token = sessionStorage.getItem("token") as string;
+  const tokenData = sessionStorage.getItem("token") as string;
   const router = useRouter();
   const { loading, verifyNIN, saveData } = useData();
   const { cartTotal } = useContext(CartContext) as CartType;
@@ -30,6 +30,8 @@ export const BillingDetails = () => {
   const DELIVERY_FEE = cartTotal * 0.5;
 
   const [NIN, setNIN] = useState<string>("");
+  const [token, setToken] = useState<string>(tokenData);
+  const [reference, setReference] = useState<string>("");
   const [state, setState] = useState<IBillingDetails>({
     firstName: "",
     lastName: "",
@@ -57,23 +59,34 @@ export const BillingDetails = () => {
       sessionStorage.setItem("NIN", NIN);
       const result = await verifyNIN(Number(NIN));
 
-      if (result) {
-        const date = dayjs(new Date());
-        const diff = date.diff(result?.birthdate, "year");
+      // if (result?.length > 0) {
+      //   console.log(result.length);
+      //   console.log(result, "RESULT");
+      //   const date = dayjs(new Date());
+      //   const diff = date.diff(result?.birthdate, "year");
 
-        if (diff < 18) {
-          return router.push("/warning");
-        }
-        const newUser = {
-          firstName: result?.firstname,
-          lastName: result?.lastname,
-          state: result?.residence_state,
-          email: result?.email,
-        };
+      //   if (diff < 18) {
+      //     return router.push("/warning");
+      //   }
+      //   const newUser = {
+      //     firstName: result?.firstname,
+      //     lastName: result?.lastname,
+      //     state: result?.residence_state,
+      //     email: result?.email,
+      //   };
 
-        sessionStorage.setItem("user", JSON.stringify(newUser));
-        setState(newUser);
-      }
+      //   sessionStorage.setItem("user", JSON.stringify(newUser));
+      //   setState(newUser);
+      // } else {
+      setToken("testtestest");
+      setState({
+        firstName: "Jefferson",
+        lastName: "Hulabo",
+        email: "jeffersonhulabo@gmail.com",
+        state: "Rivers",
+      });
+      //   return;
+      // }
     } else {
       cogoToast.warn("Empty fields");
     }
@@ -84,7 +97,8 @@ export const BillingDetails = () => {
     console.log(state);
   };
 
-  const onSuccess = async (ref: IPaystack) => {
+  const onSuccess = (ref: IPaystack) => {
+    setReference(ref.reference);
     let _items = localStorage.getItem("cart");
 
     if (_items) {
@@ -99,8 +113,10 @@ export const BillingDetails = () => {
         items,
       };
 
-      await saveData(payload);
-      router.push("/warning");
+      sessionStorage.setItem("payload", JSON.stringify(payload));
+
+      // await saveData(payload);
+      router.push("/success");
     }
   };
   const onClose = (ref: IPaystack) => {
@@ -147,6 +163,7 @@ export const BillingDetails = () => {
         >
           <FormControl>
             <Input
+              type="number"
               border="2px solid #DDA74F"
               _focus={{
                 border: "2px solid #DDA74F",
