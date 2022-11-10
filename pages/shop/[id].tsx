@@ -15,6 +15,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import Image from "next/image";
+import cogoToast from "cogo-toast";
 import { IDrink } from "../../@types/drink";
 import DRINKS from "../../infrastructure/data/wines.json";
 import styles from "../../styles/Home.module.css";
@@ -31,7 +32,7 @@ const Product = () => {
   const { addToCart } = useContext(CartContext) as CartType;
 
   const { id } = useRouter().query;
-  const [state, setState] = useState<number>(0);
+  const [state, setState] = useState<number>(1);
   const [product, setProduct] = useState<IDrink>({
     type: "",
     title: "",
@@ -57,12 +58,18 @@ const Product = () => {
   };
 
   const handleDecrement = () => {
-    if (state > 0) {
+    if (state > 1) {
       setState((prev) => prev - 1);
+    } else {
+      cogoToast.warn("Quantity cannot be less than 1");
     }
   };
 
   const handleCart = () => {
+    if (state < 1) {
+      cogoToast.warn("Qauntity cannot be less than 1");
+      return;
+    }
     const payload = {
       id: Number(product.id),
       title: product.title,

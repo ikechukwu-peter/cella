@@ -20,7 +20,8 @@ export const CartCard = () => {
   const { pathname } = useRouter();
 
   const VAT = cartTotal * 0.015;
-  const DELIVERY_FEE = cartTotal * 0.5;
+  // const DELIVERY_FEE = cartTotal * 0.5;
+  const DELIVERY_FEE = 1500;
 
   localStorage.setItem("total", `${cartTotal + VAT + DELIVERY_FEE}`);
 

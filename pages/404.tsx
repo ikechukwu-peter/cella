@@ -43,11 +43,9 @@ const NotFound: NextPage = () => {
             _hover={{
               textDecoration: "none",
             }}
-            color="white"
-            bg="black"
             // bgGradient="linear(to-r, brand.800, brand.300, brand.650)"
-            // bg={"brand.300"}
-            // color="brand.750"
+            bg={"brand.300"}
+            color="brand.200"
             variant="solid"
           >
             Go to Home

@@ -1,10 +1,9 @@
-import { useContext, FC, useState, useEffect } from "react";
+import { useContext, FC, useState } from "react";
 import {
   Stack,
   Text,
   Button,
   Image,
-  Flex,
   Box,
   Divider,
   Table,
@@ -15,9 +14,9 @@ import {
   Td,
   TableContainer,
   HStack,
-  useMediaQuery,
   Input,
 } from "@chakra-ui/react";
+import cogoToast from "cogo-toast";
 import { CartContext } from "../context/cart.context";
 import { CartType, ICart } from "../@types/cart";
 import CurrencyFormatter from "./currency-formatter";
@@ -109,6 +108,8 @@ const Items: FC<ICart> = ({ price, image, title, id, quantity, type }) => {
     if (state > 1) {
       setState((prev) => prev - 1);
       decrementCart(id);
+    } else {
+      cogoToast.warn("Quantity cannot be less than 1");
     }
   };
 
