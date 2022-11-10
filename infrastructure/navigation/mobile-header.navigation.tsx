@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   Button,
   Drawer,
@@ -11,13 +11,27 @@ import {
   Flex,
   Image,
   Box,
+  useDisclosure,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { BsSearch } from "react-icons/bs";
 import { CiUser } from "react-icons/ci";
 import { IHead } from "../../@types/header";
+import { Search } from "../../component/search";
 
 export const MobileNav: FC<IHead> = ({ isOpen, onClose, pages }) => {
+  const {
+    isOpen: isSearchOpen,
+    onOpen: onSearchOpen,
+    onClose: onSearchClose,
+  } = useDisclosure();
+  const [state, setState] = useState<string>("");
+
+  const handleSearchOpen = () => {
+    onClose();
+    onSearchOpen();
+  };
+
   const token = null;
   return (
     <>
@@ -102,7 +116,7 @@ export const MobileNav: FC<IHead> = ({ isOpen, onClose, pages }) => {
                       border: "none",
                       outline: "none",
                     }}
-                    // onClick={onOpen}
+                    onClick={handleSearchOpen}
                   >
                     Search Here
                   </Button>
@@ -170,6 +184,12 @@ export const MobileNav: FC<IHead> = ({ isOpen, onClose, pages }) => {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
+      <Search
+        isOpen={isSearchOpen}
+        onClose={onSearchClose}
+        searchTerm={state}
+        setSearchTerm={setState}
+      />
     </>
   );
 };
