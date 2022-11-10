@@ -18,6 +18,7 @@ import { CartContext } from "../context/cart.context";
 import { CartType } from "../@types/cart";
 import { IPaystack } from "../@types/paystack";
 import { useData } from "../hooks/user.hooks";
+import dayjs from "dayjs";
 
 export const BillingDetails = () => {
   const token = sessionStorage.getItem("token") as string;
@@ -55,7 +56,20 @@ export const BillingDetails = () => {
     if (NIN) {
       sessionStorage.setItem("NIN", NIN);
       const result = await verifyNIN(Number(NIN));
-      console.log("RESULT", result);
+      const date = dayjs(new Date());
+      const diff = date.diff(result?.birthdate, "year");
+      if (diff < 18) {
+        return router.push("/success");
+      }
+      const newUser = {
+        firstName: result?.firstname,
+        lastName: result?.lastname,
+        state: result?.residence_state,
+        email: result?.email,
+      };
+
+      sessionStorage.setItem("user", JSON.stringify(newUser));
+      setState(newUser);
     } else {
       cogoToast.warn("Empty fields");
     }
