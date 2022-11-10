@@ -96,7 +96,7 @@ export const BillingDetails = () => {
       };
 
       await saveData(payload);
-      router.push("/success");
+      router.push("/warning");
     }
   };
   const onClose = (ref: IPaystack) => {

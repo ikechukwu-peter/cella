@@ -1,23 +1,12 @@
-import { useContext, useEffect } from "react";
-import {
-  Stack,
-  Text,
-  Button,
-  Image,
-  Flex,
-  Box,
-  Divider,
-} from "@chakra-ui/react";
+import { useContext } from "react";
+import { Stack, Text, Button, Image, Center } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { CartType } from "../@types/cart";
 import { CartContext } from "../context/cart.context";
-import CurrencyFormatter from "./currency-formatter";
 import { useRouter } from "next/router";
 
 export const WarningCard = () => {
-  const { cart, cartTotal } = useContext(CartContext) as CartType;
-
-  const { pathname } = useRouter();
+  const { cartTotal } = useContext(CartContext) as CartType;
 
   const VAT = cartTotal * 0.015;
   // const DELIVERY_FEE = cartTotal * 0.5;
@@ -32,9 +21,12 @@ export const WarningCard = () => {
       boxSizing="border-box"
       p="1.2rem"
       rounded="xl"
-      w={{ base: "90%", md: "50%" }}
-      my="2rem"
+      w={{ base: "90%", md: "40%" }}
+      my={{ base: "1rem", md: "2rem" }}
     >
+      <Center>
+        <Image src="/warning.png" alt="Warning image" w="20%" h="20%" />
+      </Center>
       <Text
         textTransform="uppercase"
         textAlign="center"
