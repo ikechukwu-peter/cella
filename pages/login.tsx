@@ -19,6 +19,7 @@ import { Footer } from "../infrastructure/navigation/footer.navigaton";
 import { Header } from "../infrastructure/navigation/header.navigation";
 import styles from "../styles/Home.module.css";
 import { useData } from "../hooks/user.hooks";
+import { withoutAuth } from "../infrastructure/navigation/withoutauth.navigation";
 
 const Login = () => {
   const { loading, signIn } = useData();
@@ -162,4 +163,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withoutAuth(Login);

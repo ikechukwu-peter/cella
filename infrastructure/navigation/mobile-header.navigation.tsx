@@ -19,6 +19,8 @@ import { IHead } from "../../@types/header";
 import { Search } from "../../component/search";
 
 export const MobileNav: FC<IHead> = ({ isOpen, onClose, pages }) => {
+  const token = sessionStorage.getItem("token") as string;
+
   const {
     isOpen: isSearchOpen,
     onOpen: onSearchOpen,
@@ -31,7 +33,6 @@ export const MobileNav: FC<IHead> = ({ isOpen, onClose, pages }) => {
     onSearchOpen();
   };
 
-  const token = false;
   return (
     <>
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>

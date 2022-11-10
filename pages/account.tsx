@@ -21,6 +21,7 @@ import { CartContext } from "../context/cart.context";
 import { CartType } from "../@types/cart";
 import { BillingDetails } from "../component/billing-details";
 import { WarningCard } from "../component/warning-card";
+import { withAuth } from "../infrastructure/navigation/withauth.navigation";
 
 export const Account = () => {
   const { cart } = useContext(CartContext) as CartType;
@@ -88,4 +89,4 @@ export const Account = () => {
   );
 };
 
-export default Account;
+export default withAuth(Account);

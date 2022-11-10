@@ -20,6 +20,7 @@ import { IPaystack } from "../@types/paystack";
 import { useData } from "../hooks/user.hooks";
 
 export const BillingDetails = () => {
+  const token = sessionStorage.getItem("token") as string;
   const router = useRouter();
   const { loading, verifyNIN } = useData();
   const { cartTotal } = useContext(CartContext) as CartType;
@@ -116,51 +117,57 @@ export const BillingDetails = () => {
         Billing Details
       </Text>
 
-      <form
-        onSubmit={onSubmit}
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: "2rem",
-          alignItems: "center",
-        }}
-      >
-        <FormControl>
-          <Input
-            border="2px solid #DDA74F"
-            _focus={{
-              border: "2px solid #DDA74F",
-            }}
-            placeholder="Enter NIN to continue"
-            value={NIN}
-            onChange={(e) => setNIN(e.target.value)}
-          />
-        </FormControl>
-        <Button
-          type="submit"
-          loadingText="Submitting"
-          variant="outline"
-          color="brand.100"
-          bg="brand.300"
-          _hover={{
-            bg: "brand.400",
-            color: " brand.500",
+      {!token && (
+        <form
+          onSubmit={onSubmit}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: "2rem",
+            alignItems: "flex-start",
           }}
-          disabled={loading || !NIN}
         >
-          {loading ? (
-            <Spinner
-              thickness="4px"
-              speed="0.65s"
-              emptyColor="gray.200"
-              color="brand.300"
-              size="md"
+          <FormControl>
+            <Input
+              border="2px solid #DDA74F"
+              _focus={{
+                border: "2px solid #DDA74F",
+              }}
+              placeholder="Enter NIN to continue"
+              value={NIN}
+              onChange={(e) => setNIN(e.target.value)}
             />
-          ) : (
-            "Verify"
-          )}
-        </Button>
-      </form>
+            <FormHelperText>
+              Your NIN will be used to verify your ability to buy the stated
+              drinks based on the country law.
+            </FormHelperText>
+          </FormControl>
+          <Button
+            type="submit"
+            loadingText="Submitting"
+            variant="outline"
+            color="brand.100"
+            bg="brand.300"
+            _hover={{
+              bg: "brand.400",
+              color: " brand.500",
+            }}
+            disabled={loading || !NIN}
+          >
+            {loading ? (
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="brand.300"
+                size="md"
+              />
+            ) : (
+              "Verify"
+            )}
+          </Button>
+        </form>
+      )}
 
       <Box py="2rem">
         <form onSubmit={handleSubmit}>
@@ -242,7 +249,7 @@ export const BillingDetails = () => {
               password.
             </FormHelperText>
           </FormControl>
-          {isAllowed && (
+          {isAllowed && !!token && (
             <Button
               as={PaystackButton}
               {...componentProps}

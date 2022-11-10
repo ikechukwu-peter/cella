@@ -24,10 +24,9 @@ const PAGE_LINKS = [
   { name: "About", to: "/about" },
 ];
 
-//temporary
-const token = false;
-
 export const Header = () => {
+  const token = sessionStorage.getItem("token") as string;
+
   const { cart } = useContext(CartContext) as CartType;
   const [state, setState] = useState<string>("");
   const { isOpen, onOpen, onClose } = useDisclosure();
