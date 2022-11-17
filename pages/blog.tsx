@@ -18,33 +18,33 @@ const Blog: NextPage = () => {
         <Header />
       </header>
       <main className={styles.main}>
-        <Box
-          textAlign="center"
-          py={10}
-          px={6}
-          display="flex"
-          flexDir={"column"}
-          justifyContent="center"
-          alignItems="center"
-          minW={"100vw"}
-          minH={"100vh"}
-        >
-          <Text color={"gray.500"} mb={6}>
-            Coming Soon!
+        <Box mx="2rem" mt="2rem">
+          <Text fontStyle="bold" fontSize="1.2rem" fontWeight="800">
+            Blog
           </Text>
-          <NextLink passHref href="/">
-            <Button
-              as={Link}
-              _hover={{
-                textDecoration: "none",
-              }}
-              bg={"brand.300"}
-              color="brand.200"
-              variant="solid"
-            >
-              Go to Home
-            </Button>
-          </NextLink>
+          <Heading fontSize={{ base: ".8rem", md: "1rem" }}>
+            THE FEAR OF CYBER-IDENTITY THEFT AND IMPERSONATION
+          </Heading>
+          <Text color={"gray.500"} mb={6} my="1rem">
+            Technology has influenced every aspect of our life, making it
+            simpler but not necessarily better.
+          </Text>
+          <Text color={"gray.500"} mb={6}>
+            This is demonstrated by the way the Internet is used daily by
+            millions of people to communicate, to sell, advertise, retrieve, and
+            share information. As good has the Internet is, it has provided new
+            ways of conducting existing criminal activities, extend the
+            geographic reach of criminal activities or create new types of
+            criminal activity. One type of cyber-criminal activity is
+            cyber-identity theft and impersonation. Due to the ease of data
+            acquisition, the Internet has enabled the means for conducting
+            fraudulent activities with stolen identity on e-platforms.
+          </Text>
+          <Text fontStyle="bold" fontSize="1.1rem" fontWeight="600">
+            It is to this effect, that the Proton Team have embarked on an
+            ambitious project of building a feature that will curb
+            Cyber-Identity theft and impersonation in business.
+          </Text>
         </Box>
       </main>
       <footer className={styles.footer}>

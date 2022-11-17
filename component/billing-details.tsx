@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { PaystackButton } from "react-paystack";
 import {
   Stack,
   Text,
@@ -10,14 +9,16 @@ import {
   Input,
   FormHelperText,
   Spinner,
+  Flex,
 } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import cogoToast from "cogo-toast";
+import SeerbitCheckout from "seerbit-reactjs";
 import { IBillingDetails } from "../@types/billing-details";
 import { CartContext } from "../context/cart.context";
 import { CartType } from "../@types/cart";
-import { IPaystack } from "../@types/paystack";
+import { IPaystack, ISeerbit } from "../@types/paystack";
 import { useData } from "../hooks/user.hooks";
 
 export const BillingDetails = () => {
@@ -25,6 +26,7 @@ export const BillingDetails = () => {
   const router = useRouter();
   const { loading, verifyNIN, saveData } = useData();
   const { cartTotal } = useContext(CartContext) as CartType;
+  const [isAllowed, setIsAllowed] = useState<boolean>(false);
 
   const VAT = cartTotal * 0.015;
   const DELIVERY_FEE = cartTotal * 0.5;
@@ -40,6 +42,36 @@ export const BillingDetails = () => {
     email: "johndoe@gmail.com",
   });
 
+  const PUBLIC_KEY: string = `${process.env.NEXT_PUBLIC_SEERBIT_PUBLIC_KEY}`;
+
+  const [data, setData] = useState<ISeerbit>({
+    public_key: PUBLIC_KEY,
+    amount: Number(cartTotal + VAT + DELIVERY_FEE),
+    tranref: `${new Date().getTime()}`,
+    customization: {
+      theme: {
+        border_color: "#000000",
+        background_color: "#004C64",
+        button_color: "#0084A0",
+      },
+      payment_method: ["card", "account", "transfer", "wallet", "ussd"],
+      display_fee: true,
+      display_type: "embed",
+      logo: "logo_url | base64",
+    },
+  });
+
+  const close = (close: any) => {
+    router.push("/success");
+  };
+  const callback = (response: any) => {
+    router.push("/success");
+  };
+
+  const checkProgress = (progress: any) => {
+    console.log(progress, "PROGRESS");
+  };
+
   useEffect(() => {
     let resp = sessionStorage.getItem("user");
     if (resp) {
@@ -47,6 +79,10 @@ export const BillingDetails = () => {
       setState(_result);
     }
   }, []);
+
+  useEffect(() => {
+    setData({ ...data, amount: Number(cartTotal + VAT + DELIVERY_FEE) });
+  }, [data, VAT, DELIVERY_FEE, cartTotal]);
 
   const handleState = (e: React.FormEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
@@ -58,6 +94,10 @@ export const BillingDetails = () => {
     if (NIN) {
       sessionStorage.setItem("NIN", NIN);
       const result = await verifyNIN(Number(NIN));
+      console.log(result, "NIN SEARCH RESULT");
+      if (!isAllowed) {
+        return router.push("/warning");
+      }
 
       // if (result?.length > 0) {
       //   console.log(result.length);
@@ -97,47 +137,9 @@ export const BillingDetails = () => {
     console.log(state);
   };
 
-  const onSuccess = (ref: IPaystack) => {
-    setReference(ref.reference);
-    let _items = localStorage.getItem("cart");
-
-    if (_items) {
-      const items = JSON.parse(_items);
-      const payload = {
-        reference: ref.reference,
-        firstName: state.firstName,
-        lastName: state.lastName,
-        email: state.email,
-        state: state.state,
-        password: state.password,
-        items,
-      };
-
-      sessionStorage.setItem("payload", JSON.stringify(payload));
-
-      // await saveData(payload);
-      router.push("/success");
-    }
-  };
   const onClose = (ref: IPaystack) => {
     alert("Are you sure?");
-  };
-
-  const PUBLIC_KEY: string = `${process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY}`;
-
-  const componentProps: any = {
-    email: state.email,
-    amount: (cartTotal + VAT + DELIVERY_FEE) * 1000,
-
-    metadata: {
-      state: state.state,
-      firstName: state.firstName,
-      lastName: state.lastName,
-    },
-    publicKey: PUBLIC_KEY,
-    text: "Pay Now",
-    onSuccess: onSuccess,
-    onClose: onClose,
+    router.push("/success");
   };
 
   return (
@@ -152,54 +154,51 @@ export const BillingDetails = () => {
       </Text>
 
       {!token && (
-        <form
-          onSubmit={onSubmit}
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            gap: "2rem",
-            alignItems: "flex-start",
-          }}
-        >
-          <FormControl>
-            <Input
-              type="number"
-              border="2px solid #DDA74F"
-              _focus={{
-                border: "2px solid #DDA74F",
-              }}
-              placeholder="Enter NIN to continue"
-              value={NIN}
-              onChange={(e) => setNIN(e.target.value)}
-            />
-            <FormHelperText>
-              Your NIN will be used to verify your ability to buy the stated
-              drinks based on the country law.
-            </FormHelperText>
-          </FormControl>
-          <Button
-            type="submit"
-            loadingText="Submitting"
-            variant="outline"
-            color="brand.100"
-            bg="brand.300"
-            _hover={{
-              bg: "brand.400",
-              color: " brand.500",
-            }}
-            disabled={loading || !NIN}
-          >
-            {loading ? (
-              <Spinner
-                thickness="4px"
-                speed="0.65s"
-                emptyColor="gray.200"
-                color="brand.300"
-                size="md"
+        <form onSubmit={onSubmit}>
+          <Flex justify="space-between" gap="2rem" align="flex-start">
+            <FormControl>
+              <Input
+                type="number"
+                border="2px solid #DDA74F"
+                _focus={{
+                  border: "2px solid #DDA74F",
+                }}
+                placeholder="Enter NIN to continue"
+                value={NIN}
+                onChange={(e) => setNIN(e.target.value)}
               />
-            ) : (
-              "Verify"
-            )}
+              <FormHelperText>
+                Your NIN will be used to verify your ability to buy the stated
+                drinks based on the country law.
+              </FormHelperText>
+            </FormControl>
+            <Button
+              type="submit"
+              loadingText="Submitting"
+              variant="outline"
+              color="brand.100"
+              bg="brand.300"
+              _hover={{
+                bg: "brand.400",
+                color: " brand.500",
+              }}
+              disabled={loading || !NIN}
+            >
+              {loading ? (
+                <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="brand.300"
+                  size="md"
+                />
+              ) : (
+                "Verify"
+              )}
+            </Button>
+          </Flex>
+          <Button my="1rem" onClick={() => setIsAllowed(!isAllowed)}>
+            {isAllowed ? "Above" : "Below"}
           </Button>
         </form>
       )}
@@ -207,7 +206,7 @@ export const BillingDetails = () => {
       <Box py="2rem">
         <form onSubmit={handleSubmit}>
           <FormControl>
-            <FormLabel>Email Addres</FormLabel>
+            <FormLabel>Email Address</FormLabel>
             <Input
               type={"text"}
               border="2px solid #DDA74F"
@@ -284,10 +283,26 @@ export const BillingDetails = () => {
               password.
             </FormHelperText>
           </FormControl>
-          {!!token && (
+
+          {!!token && isAllowed && (
             <Button
-              as={PaystackButton}
-              {...componentProps}
+              as={SeerbitCheckout}
+              tranref={data.tranref}
+              currency={"NGN"}
+              description={"shopping"}
+              country={"NG"}
+              public_key={data.public_key}
+              callback={callback}
+              close={close}
+              scriptStatus={checkProgress}
+              amount={data.amount}
+              tag={"button"}
+              full_name={state.firstName + " " + state.lastName}
+              email={state.email}
+              // mobile_no={""}
+              customization={data.customization}
+              version={"2"}
+              title={"Pay with SeerBit"}
               bg="brand.300"
               my="2rem"
               color="brand.850"

@@ -18,34 +18,25 @@ const About: NextPage = () => {
         <Header />
       </header>
       <main className={styles.main}>
-        <Box
-          textAlign="center"
-          py={10}
-          px={6}
-          display="flex"
-          flexDir={"column"}
-          justifyContent="center"
-          alignItems="center"
-          minW={"100vw"}
-          minH={"100vh"}
-        >
-          <Text color={"gray.500"} mb={6}>
-            Coming Soon!
+        <Box mx="2rem" mt="2rem">
+          <Text fontStyle="bold" fontSize="1.2rem" fontWeight="800">
+            About
           </Text>
-          <NextLink passHref href="/">
-            <Button
-              as={Link}
-              _hover={{
-                textDecoration: "none",
-              }}
-              // bgGradient="linear(to-r, brand.800, brand.300, brand.650)"
-              bg={"brand.300"}
-              color="brand.200"
-              variant="solid"
-            >
-              Go to Home
-            </Button>
-          </NextLink>
+          <Text color={"gray.500"} mb={6} my="1rem">
+            Cella is an online market for beer, spirit, wine and other varieties
+            of alcohol drinks in Nigeria. We offer the safest and easiest way to
+            shop for your desired drinks. We save our customer’s time, by
+            helping them avoid long queues and crowded stores.
+          </Text>
+          <Text color={"gray.500"} mb={6}>
+            At Cella, we prioritize our customers’ convenience and identity
+            security by offering them confidentiality, Id verification as well
+            as easy payment features to purchase on our platform.
+          </Text>
+          <Text fontStyle="bold" fontSize="1.1rem">
+            Cella does not support sales to anyone less than 18 as our target
+            users are men and women of legal drinking age.
+          </Text>
         </Box>
       </main>
       <footer className={styles.footer}>

@@ -23,7 +23,7 @@ export const useData = () => {
   const verifyNIN = async (nin: number) => {
     setLoading(true);
     try {
-      const { data } = await instance.post("/verify", { nin });
+      const { data } = await instance.post("/verify", { nin: `${nin}` });
 
       return data;
     } catch (error: any) {

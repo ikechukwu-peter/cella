@@ -4,8 +4,20 @@ import { Stack, Box, Link, Heading, Text, Flex, Image } from "@chakra-ui/react";
 import { Footer } from "../infrastructure/navigation/footer.navigaton";
 import { Header } from "../infrastructure/navigation/header.navigation";
 import styles from "../styles/Home.module.css";
+import { useContext } from "react";
+import { CartContext } from "../context/cart.context";
+import { CartType } from "../@types/cart";
+import { useEffect } from "react";
 
 const Success = () => {
+  const { clearCart } = useContext(CartContext) as CartType;
+
+  useEffect(() => {
+    clearCart();
+    localStorage.removeItem("cart");
+    localStorage.removeItem("total");
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -34,7 +46,7 @@ const Success = () => {
             w="100%"
             flex="1"
           >
-            <Box rounded={"lg"} bg={"brand.700"} boxShadow={"lg"} p={12}>
+            <Box rounded={"lg"} bg={"brand.500"} boxShadow={"lg"} p={12}>
               <Stack spacing={4}>
                 <Text
                   fontSize={{ base: "1rem", md: "1.3rem" }}
