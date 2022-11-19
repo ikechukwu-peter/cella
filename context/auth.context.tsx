@@ -15,7 +15,6 @@ export const AuthProvider: FC<Props> = ({ children }) => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");

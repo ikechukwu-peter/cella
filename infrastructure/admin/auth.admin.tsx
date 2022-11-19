@@ -9,18 +9,20 @@ export const withAuthAdmin = (Component: any) => {
     const router = useRouter();
 
     useLayoutEffect(() => {
-      //   if (!token) {
-      //     router.push("/");
-      //   }
+      if (!token) {
+        router.push("/");
+      }
     }, [token, router]);
 
-    return !token ? (
-      <>
-        <Layout>
-          <Component />
-        </Layout>
-      </>
-    ) : null;
+    return (
+      !!token && (
+        <>
+          <Layout>
+            <Component />
+          </Layout>
+        </>
+      )
+    );
   };
 
   return AuthenticatedComponent;
