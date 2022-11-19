@@ -22,6 +22,24 @@ const Blog: NextPage = () => {
           <Text fontStyle="bold" fontSize="1.2rem" fontWeight="800">
             Blog
           </Text>
+
+          <Heading
+            fontSize={{ base: ".8rem", md: "1rem" }}
+            my="1rem"
+            textTransform="uppercase"
+          >
+            {"~ Underaged drinking: Protecting Nigeria’s future"}
+          </Heading>
+          <Text color={"gray.500"} mb={6}>
+            {
+              "Many underaged citizens drink and have access to alcohol, whether it’s out of curiosity, ignorance, peer pressure or other reasons. Which is a major public health problem."
+            }
+          </Text>
+          <Text color={"gray.500"} mb={6}>
+            {
+              "There’s very little control over the sale and distribution of alcohol on E-commerce platforms in Nigeria, and for this reason, the proton team embarked on this project to solve the prevalent alcohol abuse among Minors in Nigeria."
+            }
+          </Text>
           <Heading fontSize={{ base: ".8rem", md: "1rem" }}>
             ~ THE FEAR OF CYBER-IDENTITY THEFT AND IMPERSONATION
           </Heading>
@@ -44,23 +62,6 @@ const Blog: NextPage = () => {
             It is to this effect, that the Proton Team have embarked on an
             ambitious project of building a feature that will curb
             Cyber-Identity theft and impersonation in business.
-          </Text>
-          <Heading
-            fontSize={{ base: ".8rem", md: "1rem" }}
-            my="1rem"
-            textTransform="uppercase"
-          >
-            {"~ Underaged drinking: Protecting Nigeria’s future"}
-          </Heading>
-          <Text color={"gray.500"} mb={6}>
-            {
-              "Many underaged citizens drink and have access to alcohol, whether it’s out of curiosity, ignorance, peer pressure or other reasons. Which is a major public health problem."
-            }
-          </Text>
-          <Text color={"gray.500"} mb={6}>
-            {
-              "There’s very little control over the sale and distribution of alcohol on E-commerce platforms in Nigeria, and for this reason, the proton team embarked on this project to solve the prevalent alcohol abuse among Minors in Nigeria."
-            }
           </Text>
         </Box>
       </main>
